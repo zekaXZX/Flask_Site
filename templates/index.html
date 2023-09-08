@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Генератор пароля</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-5.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-image">
+            <img src="https://static.thenounproject.com/png/847891-200.png" alt="PIN Code">
+        </div>
+        <div class="nav-buttons">
+            <button onclick="redirectToHome_page()">Home</button>
+            <button onclick="redirectToProject2()">Project-2</button>
+            <button>Project-3</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Генератор пароля</h1>
+
+        <div class="form-group">
+            <label for="password-length">Довжина пароля:</label>
+            <input type="range" id="password-length" min="6" max="30" value="10">
+        </div>
+
+        <div class="password-output" id="password-output"></div>
+
+        <div class="password-strength">
+            <button class="weak">Слабкий</button>
+            <button class="medium">Середній</button>
+            <button class="strong">Міцний</button>
+        </div>
+
+        <div class="generate-button">
+            <button onclick="generatePassword()">Згенерувати пароль</button>
+        </div>
+    </div>
+
+    <script>
+        function generatePassword() {
+            var passwordLength = document.getElementById("password-length").value;
+            var password = "";
+            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < passwordLength; i++) {
+                password += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+
+            document.getElementById("password-output").textContent = password;
+        }
+
+        function redirectToProject2() {
+            window.location.href = "/project-2";
+        }
+
+        function redirectToHome_page() {
+            window.location.href = "/home";
+        }
+    </script>
+</body>
+</html>

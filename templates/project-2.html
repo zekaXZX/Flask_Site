@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paint</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-3.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-image">
+            <img src="https://static.thenounproject.com/png/847891-200.png" alt="PIN Code">
+        </div>
+        <div class="nav-buttons">
+            <button onclick="redirectToHome_page()">Home</button>
+            <button onclick="redirectToProject2()">Project-1</button>
+            <button onclick="redirectToProject3()">Project-3</button>
+            <button onclick="changeColor('white')" style="background-color: white;">Гумка</button>
+            <button onclick="changeColor('black')" style="background-color: black;"></button>
+            <button onclick="changeColor('red')" style="background-color: red;"></button>
+            <button onclick="changeColor('blue')" style="background-color: blue;"></button>
+            <button onclick="changeColor('green')" style="background-color: green;"></button>
+        </div>
+    </div>
+    <canvas id="canvas" width="1600" height="710"></canvas>
+    <script>
+        function redirectToProject2() {
+            window.location.href = "/project-1";
+        }
+
+        function redirectToHome_page() {
+            window.location.href = "/home";
+        }
+
+        function redirectToProject3() {
+            window.location.href = "/project-3";
+        }
+
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        var prevX, prevY;
+
+        ctx.lineWidth = 5;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = 'black';
+
+        var isDrawing = false;
+
+        function startDrawing(e) {
+            isDrawing = true;
+            prevX = e.clientX - canvas.offsetLeft;
+            prevY = e.clientY - canvas.offsetTop;
+            ctx.beginPath();
+            ctx.moveTo(prevX, prevY);
+            canvas.addEventListener('mousemove', draw);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            var x = e.clientX - canvas.offsetLeft;
+            var y = e.clientY - canvas.offsetTop;
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            prevX = x;
+            prevY = y;
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+            canvas.removeEventListener('mousemove', draw);
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mouseup', stopDrawing);
+
+        function changeColor(color) {
+            ctx.strokeStyle = color;
+            if (color === 'white') {
+                ctx.lineWidth = 20;
+            } else {
+                ctx.lineWidth = 5;
+            }
+        }
+    </script>
+</body>
+</html>

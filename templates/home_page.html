@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-2.css') }}">
+</head>
+<body>
+    <div class="gradient-container">
+        <div class="block">
+            <div class="btn-container">
+                <button class="btn btn-purple" type="button" onclick="redirectToProject1()">Project-1</button>
+                <button class="btn btn-blue" type="button" onclick="redirectToProject2()">Project-2</button>
+                <button class="btn btn-green" type="button" onclick="redirectToProject3()">Project-3</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirectToProject1() {
+            window.location.href = "/project-1";
+        }
+
+        function redirectToProject2() {
+            window.location.href = "/project-2";
+        }
+
+        function redirectToProject3() {
+            window.location.href = "/project-3";
+        }
+    </script>
+</body>
+</html>

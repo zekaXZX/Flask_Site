@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-4.css') }}">
+</head>
+<body>
+    <div class="calculator">
+        <div class="block">
+            <div class="display">
+                <input type="text" id="input-field" disabled>
+            </div>
+            <div class="buttons">
+                <button onclick="addToInput('1')">1</button>
+                <button onclick="addToInput('2')">2</button>
+                <button onclick="addToInput('3')">3</button>
+                <button onclick="addToInput('+')">+</button>
+                <br>
+                <button onclick="addToInput('4')">4</button>
+                <button onclick="addToInput('5')">5</button>
+                <button onclick="addToInput('6')">6</button>
+                <button onclick="addToInput('-')">-</button>
+                <br>
+                <button onclick="addToInput('7')">7</button>
+                <button onclick="addToInput('8')">8</button>
+                <button onclick="addToInput('9')">9</button>
+                <button onclick="addToInput('*')">*</button>
+                <br>
+                <button onclick="addToInput('0')">0</button>
+                <button onclick="clearInput()">C</button>
+                <button onclick="calculate()">=</button>
+                <button onclick="addToInput('/')">/</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addToInput(value) {
+            document.getElementById('input-field').value += value;
+        }
+
+        function clearInput() {
+            document.getElementById('input-field').value = '';
+        }
+
+        function calculate() {
+            const input = document.getElementById('input-field').value;
+            try {
+                const result = eval(input);
+                document.getElementById('input-field').value = result;
+            } catch (error) {
+                document.getElementById('input-field').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
